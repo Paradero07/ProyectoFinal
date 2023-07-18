@@ -1,0 +1,227 @@
+/*Estilos del header*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }
+  
+  :root {
+    --bg-color: #fbfbfb;
+    --text-color: #0f0f0f;
+  }
+  
+  html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+  }
+  
+  body {
+    background-color: var(--bg-color);
+  
+    color: var(--text-color);
+  }
+  
+  section {
+    min-height: 100vh;
+    padding: 80px;
+  }
+  
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    background: var(--bg-color);
+  
+    padding: 2rem 9%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+  }
+  
+  .logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+  }
+  
+  .navbar a {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-left: 4rem;
+  }
+  
+  .Inicio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Inicio-img img {
+    height: 400px;
+    display: inline;
+    padding: 20px;
+    margin-left: 150px;
+    border-radius: 50%;
+  }
+  
+  .Inicio-contenido h3 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+  }
+  
+  .Inicio-contenido h1 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  
+  .btn {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    margin-left: 300px;
+    display: flexbox;
+    text-align: center;
+    padding: 20px;
+    background-color: #af599e;
+    border-radius: 2.5rem;
+    box-shadow: 0 0 1rem;
+    font-size: 3.2rem;
+  }
+  
+  .sobre mi {
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 2rem;
+    background: var(--bg-color);
+  }
+  .heading {
+    text-align: center;
+    font-size: 36px;
+  }
+  
+  .sobre h3 {
+    text-align: center;
+  
+    font-size: 28px;
+  }
+  
+  .sobre p {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  
+  .portafolio h2 {
+    justify-content: center;
+    display: flex;
+    align-content: center;
+    font-size: 4.5rem;
+  }
+  
+  .portafolio h1 {
+    text-align: center;
+  
+    font-size: 3.2rem;
+  }
+  
+  .portafolio ul {
+    text-align: left;
+    font-size: 2.2rem;
+  }
+  article {
+    background-color: rgba(175, 89, 158, 0.3);
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 100px;
+    text-align: center;
+  }
+  
+  .Contacto h2 {
+    text-align: center;
+    font-size: 36px;
+  }
+  
+  .Contacto p {
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .icon {
+    display: flex;
+  }
+  .imag {
+    width: 150px;
+    margin-right: 200px;
+    border-radius: 20%;
+    padding-top: 30px;
+  }
+  
+  hr {
+    list-style: georgian;
+  }
+  
+  .Contacto h2 {
+    margin-bottom: 28px;
+  }
+  
+  .Contacto form {
+    max-width: 70rem;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .Contacto form .buzon {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .Contacto form .buzon input,
+  .Contacto form textarea {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background-color: blanchedalmond;
+    border-radius: 0.8rem;
+    margin: 0.7rem 0;
+  }
+  
+  .Contacto form .Buzon input {
+    width: 49%;
+  }
+  
+  .Contacto form textarea {
+    resize: none;
+  }
+  
+  .Contacto form .btn {
+    margin-top: 2rem;
+    cursor: pointer;
+    background-color: #af599e;
+  }
+  
+  .footer {
+    padding: 90px;
+    background-color: #af599e;
+  }
+  
+  .footer p {
+    font-size: 18px;
+    color: #0f0f0f;
+    text-align: left;
+  }
+  
