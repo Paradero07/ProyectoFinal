@@ -1,1114 +1,783 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Erwin Melendez | Dev</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- =====================================================
-         FUENTES — Cambia aquí si quieres otra tipografía
-         https://fonts.google.com
-    ===================================================== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
+  <!-- ── SEO básico — Edita la descripción ── -->
+  <meta name="description" content="Portafolio de Erwin Meléndez — Coordinador de Operaciones, Analista de Datos y Desarrollador FrontEnd. Disponible para trabajo remoto." />
+  <meta name="author"      content="Erwin J. Meléndez" />
 
-    <style>
-      /* =====================================================
-         VARIABLES — Cambia colores aquí fácilmente
-         ===================================================== */
-      :root {
-        --verde:       #00ff88;   /* Color acento principal */
-        --verde-dim:   #00cc6a;   /* Verde más oscuro */
-        --azul:        #00b4d8;   /* Acento secundario */
-        --fondo:       #0d1117;   /* Fondo principal */
-        --fondo-card:  #161b22;   /* Fondo de tarjetas */
-        --fondo-code:  #1c2128;   /* Fondo de bloques de código */
-        --borde:       #30363d;   /* Color de bordes */
-        --texto:       #c9d1d9;   /* Texto general */
-        --texto-dim:   #8b949e;   /* Texto secundario */
-        --blanco:      #f0f6fc;   /* Texto claro */
-        --font-mono:   'Fira Code', 'Courier New', monospace;
-        --font-title:  'Space Mono', monospace;
-        --radio:       8px;
-        --transicion:  0.25s ease;
-      }
+  <!-- ── Open Graph (para vista previa en LinkedIn) ── -->
+  <meta property="og:title"       content="Erwin Meléndez | Portafolio Profesional" />
+  <meta property="og:description" content="Coordinador de Operaciones · Análisis de Datos · Desarrollo Web" />
+  <meta property="og:type"        content="website" />
+  <!-- og:image → agrega la URL de tu foto cuando tengas el sitio publicado -->
 
-      /* =====================================================
-         RESET Y BASE
-         ===================================================== */
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
+  <title>Erwin Meléndez | Coordinador de Operaciones & Datos</title>
 
-      body {
-        background-color: var(--fondo);
-        color: var(--texto);
-        font-family: var(--font-mono);
-        font-size: 15px;
-        line-height: 1.7;
-        cursor: default;
-      }
+  <!-- Fuentes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-      /* Barra de scroll personalizada */
-      ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: var(--fondo); }
-      ::-webkit-scrollbar-thumb { background: var(--verde-dim); border-radius: 3px; }
-
-      /* =====================================================
-         UTILIDADES GENERALES
-         ===================================================== */
-      .highlight  { color: var(--verde); }
-      .highlight2 { color: var(--azul); }
-      .dim        { color: var(--texto-dim); }
-      .seccion-titulo {
-        font-family: var(--font-title);
-        font-size: clamp(1.4rem, 3vw, 2rem);
-        color: var(--blanco);
-        margin-bottom: 0.4rem;
-      }
-      .seccion-titulo::before {
-        content: '# ';
-        color: var(--verde);
-      }
-      .seccion-subtitulo {
-        color: var(--texto-dim);
-        font-size: 0.85rem;
-        margin-bottom: 2.5rem;
-      }
-
-      /* Botón principal */
-      .btn {
-        display: inline-block;
-        padding: 0.65rem 1.4rem;
-        background: transparent;
-        color: var(--verde);
-        border: 1px solid var(--verde);
-        border-radius: var(--radio);
-        font-family: var(--font-mono);
-        font-size: 0.85rem;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background var(--transicion), color var(--transicion), transform var(--transicion);
-      }
-      .btn:hover {
-        background: var(--verde);
-        color: var(--fondo);
-        transform: translateY(-2px);
-      }
-      .btn-azul {
-        color: var(--azul);
-        border-color: var(--azul);
-      }
-      .btn-azul:hover { background: var(--azul); color: var(--fondo); }
-
-      /* =====================================================
-         HEADER / NAVBAR
-         ===================================================== */
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        background: rgba(13, 17, 23, 0.92);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--borde);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 5%;
-      }
-
-      .logo {
-        font-family: var(--font-title);
-        font-size: 1.1rem;
-        color: var(--verde);
-        text-decoration: none;
-        letter-spacing: -0.5px;
-      }
-      .logo::before { content: '<'; }
-      .logo::after  { content: ' />'; color: var(--texto-dim); }
-
-      nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-      nav a {
-        color: var(--texto-dim);
-        text-decoration: none;
-        font-size: 0.85rem;
-        transition: color var(--transicion);
-        position: relative;
-      }
-      nav a::before { content: './'; color: var(--verde); font-size: 0.75rem; }
-      nav a:hover   { color: var(--verde); }
-
-      /* Menú hamburguesa para móvil */
-      .menu-toggle { display: none; background: none; border: none; color: var(--verde); font-size: 1.4rem; cursor: pointer; }
-
-      /* =====================================================
-         SECCIÓN INICIO / HERO
-         ===================================================== */
-      #inicio {
-        min-height: 100vh;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-        gap: 3rem;
-        padding: 6rem 5% 4rem;
-      }
-
-      .inicio-contenido { max-width: 560px; }
-
-      .terminal-tag {
-        display: inline-block;
-        font-size: 0.8rem;
-        color: var(--texto-dim);
-        margin-bottom: 1rem;
-      }
-      .terminal-tag::before { content: '$ '; color: var(--verde); }
-
-      .inicio-nombre {
-        font-family: var(--font-title);
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        color: var(--blanco);
-        line-height: 1.1;
-        margin-bottom: 0.5rem;
-      }
-
-      .inicio-rol {
-        font-size: 1.1rem;
-        margin-bottom: 1.5rem;
-        min-height: 1.7rem;
-      }
-      .cursor-typed {
-        display: inline-block;
-        width: 2px;
-        height: 1.1rem;
-        background: var(--verde);
-        margin-left: 2px;
-        animation: parpadeo 1s infinite;
-        vertical-align: middle;
-      }
-      @keyframes parpadeo { 0%,100%{ opacity:1 } 50%{ opacity:0 } }
-
-      .inicio-descripcion {
-        color: var(--texto-dim);
-        font-size: 0.9rem;
-        max-width: 440px;
-        margin-bottom: 2rem;
-      }
-
-      .inicio-botones { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-      /* Foto / Avatar */
-      .inicio-foto-wrap {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .foto-frame {
-        position: relative;
-        width: 280px;
-        height: 280px;
-      }
-      .foto-frame::before {
-        content: '';
-        position: absolute;
-        inset: -8px;
-        border: 1px dashed var(--verde);
-        border-radius: 50%;
-        animation: girar 12s linear infinite;
-      }
-      @keyframes girar { to { transform: rotate(360deg); } }
-
-      /* =====================================================
-         REEMPLAZA ESTE BLOQUE CON TU FOTO REAL
-         Pon tu imagen en una carpeta "imagenes/" y cambia
-         la URL de background-image abajo
-         ===================================================== */
-      .foto-avatar {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background-color: var(--fondo-card);
-        background-image: url('imagenes/Foto.jpg');  /* ← TU FOTO AQUÍ */
-        background-size: cover;
-        background-position: center;
-        border: 2px solid var(--borde);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 4rem;
-        overflow: hidden;
-      }
-      /* Si no hay foto se muestra este emoji de fallback */
-      .foto-avatar::after {
-        content: '👨‍💻';
-        position: absolute;
-        /* Elimina las líneas de abajo si tu foto carga bien */
-        /* display: none; */
-      }
-
-      /* Estadísticas de código rápidas */
-      .code-stats {
-        display: flex;
-        gap: 1.5rem;
-        margin-top: 2rem;
-        flex-wrap: wrap;
-      }
-      .stat-item { text-align: center; }
-      .stat-num  { font-size: 1.5rem; color: var(--verde); font-family: var(--font-title); }
-      .stat-lbl  { font-size: 0.72rem; color: var(--texto-dim); }
-
-      /* =====================================================
-         SECCIÓN SOBRE MÍ
-         ===================================================== */
-      #sobre-mi {
-        padding: 5rem 5%;
-        border-top: 1px solid var(--borde);
-      }
-
-      .sobre-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: start;
-        max-width: 960px;
-      }
-
-      /* Bloque estilo terminal */
-      .terminal-box {
-        background: var(--fondo-code);
-        border: 1px solid var(--borde);
-        border-radius: var(--radio);
-        overflow: hidden;
-      }
-      .terminal-header {
-        background: var(--fondo-card);
-        padding: 0.5rem 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        border-bottom: 1px solid var(--borde);
-        font-size: 0.75rem;
-        color: var(--texto-dim);
-      }
-      .dot { width: 10px; height: 10px; border-radius: 50%; }
-      .dot-r { background: #ff5f57; }
-      .dot-y { background: #febc2e; }
-      .dot-g { background: #28c840; }
-      .terminal-body { padding: 1.2rem 1.4rem; font-size: 0.85rem; line-height: 1.9; }
-      .terminal-body .c-verde  { color: var(--verde); }
-      .terminal-body .c-azul   { color: var(--azul); }
-      .terminal-body .c-gris   { color: var(--texto-dim); }
-      .terminal-body .c-blanco { color: var(--blanco); }
-
-      /* Habilidades */
-      .skill-list { display: flex; flex-direction: column; gap: 1rem; }
-      .skill-item label {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.8rem;
-        color: var(--texto-dim);
-        margin-bottom: 4px;
-      }
-      .skill-bar-bg {
-        background: var(--borde);
-        border-radius: 4px;
-        height: 6px;
-        overflow: hidden;
-      }
-      .skill-bar {
-        height: 100%;
-        border-radius: 4px;
-        background: linear-gradient(90deg, var(--verde), var(--azul));
-        width: 0;
-        transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      /* =====================================================
-         SECCIÓN PORTAFOLIO / PROYECTOS
-         ===================================================== */
-      #portafolio {
-        padding: 5rem 5%;
-        border-top: 1px solid var(--borde);
-      }
-
-      /* ─── AGREGA TUS PROYECTOS EN EL HTML ABAJO ─── */
-      .proyectos-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-      }
-
-      /* Tarjeta de proyecto */
-      .proyecto-card {
-        background: var(--fondo-card);
-        border: 1px solid var(--borde);
-        border-radius: var(--radio);
-        padding: 1.4rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.8rem;
-        transition: border-color var(--transicion), transform var(--transicion);
-        position: relative;
-        overflow: hidden;
-      }
-      .proyecto-card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--verde), var(--azul));
-        opacity: 0;
-        transition: opacity var(--transicion);
-      }
-      .proyecto-card:hover { border-color: var(--verde); transform: translateY(-4px); }
-      .proyecto-card:hover::before { opacity: 1; }
-
-      .proyecto-icon  { font-size: 1.8rem; }
-      .proyecto-nombre {
-        font-family: var(--font-title);
-        font-size: 1rem;
-        color: var(--blanco);
-      }
-      .proyecto-desc {
-        font-size: 0.82rem;
-        color: var(--texto-dim);
-        flex: 1;
-      }
-      .proyecto-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-      }
-      .tag {
-        font-size: 0.72rem;
-        padding: 2px 8px;
-        border-radius: 20px;
-        background: var(--fondo-code);
-        color: var(--verde);
-        border: 1px solid var(--borde);
-      }
-      .proyecto-links { display: flex; gap: 0.7rem; margin-top: 0.4rem; }
-      .proyecto-links a {
-        font-size: 0.78rem;
-        color: var(--texto-dim);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        transition: color var(--transicion);
-      }
-      .proyecto-links a:hover { color: var(--verde); }
-
-      /* =====================================================
-         SECCIÓN HOJA DE VIDA / EXPERIENCIA
-         ===================================================== */
-      #hoja-de-vida {
-        padding: 5rem 5%;
-        border-top: 1px solid var(--borde);
-      }
-
-      .timeline { max-width: 720px; display: flex; flex-direction: column; gap: 0; }
-
-      .timeline-item {
-        display: grid;
-        grid-template-columns: 120px 1fr;
-        gap: 1.5rem;
-        position: relative;
-        padding-bottom: 2.5rem;
-      }
-      .timeline-item::after {
-        content: '';
-        position: absolute;
-        left: 119px;
-        top: 24px;
-        bottom: 0;
-        width: 1px;
-        background: var(--borde);
-      }
-      .timeline-item:last-child { padding-bottom: 0; }
-      .timeline-item:last-child::after { display: none; }
-
-      .timeline-fecha {
-        font-size: 0.75rem;
-        color: var(--texto-dim);
-        text-align: right;
-        padding-top: 4px;
-      }
-
-      .timeline-contenido {
-        border: 1px solid var(--borde);
-        border-radius: var(--radio);
-        padding: 1rem 1.2rem;
-        background: var(--fondo-card);
-        position: relative;
-      }
-      .timeline-contenido::before {
-        content: '';
-        position: absolute;
-        left: -6px; top: 14px;
-        width: 10px; height: 10px;
-        background: var(--verde);
-        border-radius: 50%;
-        border: 2px solid var(--fondo);
-      }
-      .timeline-titulo { color: var(--blanco); font-size: 0.95rem; font-weight: 600; }
-      .timeline-sub    { color: var(--azul); font-size: 0.8rem; margin-bottom: 0.5rem; }
-      .timeline-desc   { font-size: 0.82rem; color: var(--texto-dim); }
-
-      /* =====================================================
-         SECCIÓN CONTACTO
-         ===================================================== */
-      #contacto {
-        padding: 5rem 5%;
-        border-top: 1px solid var(--borde);
-      }
-
-      .contacto-grid {
-        display: grid;
-        grid-template-columns: 1fr 1.4fr;
-        gap: 3rem;
-        max-width: 900px;
-      }
-
-      .redes { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
-      .red-link {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        color: var(--texto-dim);
-        text-decoration: none;
-        font-size: 0.85rem;
-        transition: color var(--transicion);
-      }
-      .red-link:hover { color: var(--verde); }
-      .red-icon {
-        width: 36px; height: 36px;
-        border: 1px solid var(--borde);
-        border-radius: var(--radio);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1rem;
-        background: var(--fondo-card);
-        transition: border-color var(--transicion);
-      }
-      .red-link:hover .red-icon { border-color: var(--verde); }
-
-      /* Formulario */
-      .form-group { display: flex; flex-direction: column; gap: 1rem; }
-      .form-row    { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-      .form-group input,
-      .form-group textarea {
-        width: 100%;
-        background: var(--fondo-card);
-        border: 1px solid var(--borde);
-        border-radius: var(--radio);
-        padding: 0.7rem 1rem;
-        color: var(--texto);
-        font-family: var(--font-mono);
-        font-size: 0.85rem;
-        outline: none;
-        transition: border-color var(--transicion);
-        resize: vertical;
-      }
-      .form-group input:focus,
-      .form-group textarea:focus { border-color: var(--verde); }
-      .form-group input::placeholder,
-      .form-group textarea::placeholder { color: var(--texto-dim); }
-
-      .form-status {
-        font-size: 0.8rem;
-        padding: 0.5rem;
-        border-radius: var(--radio);
-        display: none;
-        margin-top: 0.5rem;
-      }
-      .form-status.ok  { color: var(--verde); background: rgba(0,255,136,0.08); display: block; }
-      .form-status.err { color: #f85149; background: rgba(248,81,73,0.08); display: block; }
-
-      /* =====================================================
-         FOOTER
-         ===================================================== */
-      footer {
-        border-top: 1px solid var(--borde);
-        padding: 1.5rem 5%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-        font-size: 0.78rem;
-        color: var(--texto-dim);
-      }
-      .footer-izq span { color: var(--verde); }
-
-      /* =====================================================
-         RESPONSIVE — MÓVIL
-         ===================================================== */
-      @media (max-width: 768px) {
-        #inicio          { grid-template-columns: 1fr; padding-top: 5rem; text-align: center; }
-        .inicio-foto-wrap { order: -1; }
-        .foto-frame      { width: 200px; height: 200px; }
-        .inicio-botones  { justify-content: center; }
-        .code-stats      { justify-content: center; }
-        .sobre-grid      { grid-template-columns: 1fr; }
-        .contacto-grid   { grid-template-columns: 1fr; }
-        .form-row        { grid-template-columns: 1fr; }
-        .timeline-item   { grid-template-columns: 1fr; }
-        .timeline-fecha  { text-align: left; }
-        .timeline-item::after { display: none; }
-        .menu-toggle     { display: block; }
-        nav {
-          display: none;
-          flex-direction: column;
-          position: absolute;
-          top: 100%;
-          right: 0;
-          background: var(--fondo-card);
-          border: 1px solid var(--borde);
-          border-radius: var(--radio);
-          padding: 1rem;
-          min-width: 180px;
-        }
-        nav.open { display: flex; }
-        header   { position: relative; }
-      }
-
-      /* Animación de entrada suave */
-      .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-      }
-      .fade-in.visible { opacity: 1; transform: translateY(0); }
-    </style>
-  </head>
-
-  <body>
-
-    <!-- =====================================================
-         HEADER
-         ===================================================== -->
-    <header>
-      <a href="#inicio" class="logo">Erwin.dev</a>
-
-      <button class="menu-toggle" id="menuToggle" aria-label="Menú">☰</button>
-
-      <nav id="mainNav">
-        <!-- Agrega o quita páginas aquí -->
-        <a href="#inicio">Inicio</a>
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#portafolio">Portafolio</a>
-        <a href="#hoja-de-vida">Experiencia</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </header>
+  <!-- Hoja de estilos (archivo separado) -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
 
 
-    <!-- =====================================================
-         SECCIÓN 1 — INICIO / HERO
-         ===================================================== -->
-    <section id="inicio">
+  <!-- ============================================================
+       NAVEGACIÓN
+       ============================================================ -->
+  <header class="navbar" role="banner">
+    <nav class="navbar-inner" aria-label="Navegación principal">
 
-      <div class="inicio-contenido fade-in">
-        <p class="terminal-tag"> "Bienvenido a mi portafolio"</p>
+      <!-- ── Tu marca personal — edita aquí ── -->
+      <a href="#inicio" class="logo" aria-label="Inicio">
+        erwin<span>.melendez</span>
+      </a>
 
-        <!-- ↓ Cambia tu nombre aquí -->
-        <h1 class="inicio-nombre">Erwin<br /><span class="highlight">Melendez</span></h1>
+      <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
 
-        <!-- El texto rotativo se controla en el JS al final -->
-        <p class="inicio-rol">
-          <span class="highlight2" id="texto-rol"></span>
-          <span class="cursor-typed"></span>
-        </p>
+      <ul class="nav-lista" id="nav-lista" role="list">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
 
-        <!-- ↓ Cambia tu descripción corta aquí -->
-        <p class="inicio-descripcion">
-          Coordinador de operaciones logisticas. Construyo herramientas que resuelven
-          problemas reales. 
-          Combino logica operativa, analisis de datos, matematicas y desarrollo web para convertir
-          caos logisticos en sistemas. 
-        </p>
+      <!-- ── Actualiza la ruta de tu CV ── -->
+      <a href="Hoja/Hoja de vida Erwin.pdf" target="_blank" class="btn btn-primario nav-cta" aria-label="Descargar CV en PDF">
+        ⬇ Descargar CV
+      </a>
 
-        <div class="inicio-botones">
-          <!-- ↓ Cambia la ruta de tu hoja de vida aquí -->
-          <a href="Hoja de vida ErwinMelendez.pdf" target="_blank" class="btn">
-            ↓ Descargar CV
-          </a>
-          <a href="#contacto" class="btn btn-azul">Contáctame</a>
-        </div>
+    </nav>
+  </header>
 
-        <!-- ↓ Cambia los números según tu experiencia real -->
-        <div class="code-stats">
-          <div class="stat-item">
-            <div class="stat-num">2+</div>
-            <div class="stat-lbl">Proyectos</div>
+
+  <!-- ============================================================
+       SECCIÓN 1 — INICIO / HÉROE
+       ============================================================ -->
+  <main>
+  <section id="inicio" aria-label="Presentación">
+    <div class="contenedor">
+      <div class="hero-inner">
+
+        <div class="hero-contenido">
+
+          <!-- Indicador de disponibilidad -->
+          <span class="hero-disponible">
+            <span class="punto-animado" aria-hidden="true"></span>
+            Disponible para trabajo remoto
+          </span>
+
+          <!-- ── Edita tu título profesional ── -->
+          <h1 class="hero-titulo">
+            Erwin J.<br/>
+            <span class="acento">Meléndez</span>
+          </h1>
+
+          <p class="hero-subtitulo">
+            <strong id="texto-animado">Coordinador de Operaciones</strong> con experiencia en
+            gestión logística nacional, análisis de datos y desarrollo web.
+            Basado en Bogotá, Colombia.
+          </p>
+
+          <div class="hero-botones">
+            <a href="#contacto" class="btn btn-primario">Contáctame →</a>
+            <a href="#experiencia" class="btn btn-secundario">Ver experiencia</a>
           </div>
-          <div class="stat-item">
-            <div class="stat-num">1</div>
-            <div class="stat-lbl">año aprendiendo</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">∞</div>
-            <div class="stat-lbl">curiosidad</div>
+
+          <!-- Métricas rápidas — edita los números -->
+          <div class="hero-metricas" role="list">
+            <div role="listitem">
+              <p class="metrica-num">+20</p>
+              <p class="metrica-label">Rutas logísticas gestionadas</p>
+            </div>
+            <div role="listitem">
+              <p class="metrica-num">9</p>
+              <p class="metrica-label">Años de experiencia</p>
+            </div>
+            <div role="listitem">
+              <p class="metrica-num">3</p>
+              <p class="metrica-label">Idiomas de trabajo</p>
+            </div>
           </div>
         </div>
+
+        <!-- Foto de perfil -->
+        <div class="hero-foto-col">
+          <div class="foto-marco">
+            <div class="foto-fondo-deco" aria-hidden="true"></div>
+
+            <!-- ══════════════════════════════════════
+                 CAMBIA TU FOTO:
+                 Reemplaza src por la ruta de tu imagen.
+                 Si no hay imagen, muestra un texto por defecto.
+                 ══════════════════════════════════════ -->
+            <img
+              src="imagenes/Foto.jpg"
+              alt="Foto de Erwin J. Meléndez"
+              class="foto-img"
+              onerror="this.outerHTML='<div class=\'foto-img\'>Agrega tu foto<br/>imagenes/Foto.jpg</div>'"
+            />
+
+            <!-- Mini tarjeta flotante -->
+            <div class="foto-badge" aria-label="Empresa actual">
+              <strong>CCM Ingeniería SAS</strong>
+              Coordinador de Operaciones
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <div class="inicio-foto-wrap fade-in">
-        <div class="foto-frame">
-          <!--
-            CÓMO CAMBIAR TU FOTO:
-            1. Pon tu foto en la carpeta "imagenes/"
-            2. Cambia "Foto.jpg" por el nombre de tu archivo
-            3. Guarda y recarga el navegador
-          -->
-          <div class="foto-avatar" style="background-image: url('imagenes/Foto.jpg');"></div>
-        </div>
-      </div>
-
-    </section>
+    </div>
+  </section>
 
 
-    <!-- =====================================================
-         SECCIÓN 2 — SOBRE MÍ
-         ===================================================== -->
-    <section id="sobre-mi">
+  <!-- ============================================================
+       SECCIÓN 2 — SOBRE MÍ
+       ============================================================ -->
+  <section id="sobre-mi" aria-label="Sobre mí">
+    <div class="contenedor">
 
-      <h2 class="seccion-titulo">sobre_mi</h2>
-      <p class="seccion-subtitulo">// Quién soy más allá del código</p>
+      <p class="etiqueta">Mi perfil</p>
+      <h2 class="titulo-seccion">Sobre mí</h2>
+      <div class="linea-acento"></div>
 
       <div class="sobre-grid">
 
-        <!-- Terminal con información personal -->
-        <div class="terminal-box fade-in">
-          <div class="terminal-header">
-            <span class="dot dot-r"></span>
-            <span class="dot dot-y"></span>
-            <span class="dot dot-g"></span>
-            <span style="margin-left:8px;">erwin@portfolio ~ info.js</span>
-          </div>
-          <div class="terminal-body">
-            <p><span class="c-gris">const</span> <span class="c-azul">erwin</span> <span class="c-gris">=</span> {</p>
+        <!-- Texto -->
+        <div class="sobre-texto reveal">
+          <!-- ── Edita tu presentación aquí ── -->
+          <p>
+            Soy Coordinador de Operaciones Logísticas con más de 9 años de experiencia combinada
+            en gestión de rutas, liderazgo de equipos, control de costos y negociación con
+            proveedores. Actualmente me desempeño en CCM Ingeniería SAS coordinando más de 20
+            rutas de distribución de GLP y oxígeno a nivel nacional.
+          </p>
+          <p>
+            Complemento mi perfil operativo con habilidades en análisis de datos (Power BI, SQL,
+            Excel) y estoy en proceso de formación en desarrollo web FrontEnd. Me apasiona
+            aprovechar la tecnología para optimizar procesos y tomar mejores decisiones.
+          </p>
+          <p>
+            Tengo experiencia como docente de matemáticas (más de 8 años) y actualmente ofrezco
+            clases particulares en Bogotá como actividad complementaria. Busco oportunidades de
+            trabajo remoto donde pueda aportar mi visión analítica y operativa.
+          </p>
 
-            <!-- ↓ EDITA TU INFORMACIÓN PERSONAL AQUÍ -->
-            <p>&nbsp;&nbsp;<span class="c-verde">Nombre</span>: <span class="c-blanco">Erwin Melendez</span>,</p>
-            <p>&nbsp;&nbsp;<span class="c-verde">Ciudad</span>: <span class="c-blanco">Bogotá, Colombia</span>,</p>
-            <p>&nbsp;&nbsp;<span class="c-verde">rol</span>: <span class="c-blanco">Frontend Trainee</span>,</p>
-            <p>&nbsp;&nbsp;<span class="c-verde">aprendiendo</span>: [</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-blanco">HTML/CSS</span>,</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-blanco">JavaScript</span>,</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-blanco">React (próximamente)</span></p>
-            <p>&nbsp;&nbsp;],</p>
-            <p>&nbsp;&nbsp;<span class="c-verde">intereses</span>: [</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-blanco">"⚾ Beisbol"</span>,</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-blanco">"📈 Bolsa de valores"</span>,</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-blanco">"📚 Lectura"</span>,</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-blanco">"🔢 Matemáticas"</span></p>
-            <p>&nbsp;&nbsp;]</p>
-            <p>};</p>
+          <!-- Datos personales — edita según tu información real -->
+          <div class="datos-personales" role="list">
+            <div class="dato reveal" data-delay="0">
+              <p class="dato-etiqueta">Ciudad</p>
+              <p class="dato-valor">Bogotá, Colombia</p>
+            </div>
+            <div class="dato reveal" data-delay="100">
+              <p class="dato-etiqueta">Teléfono</p>
+              <p class="dato-valor">+57 350 673 5545</p>
+            </div>
+            <div class="dato reveal" data-delay="200">
+              <p class="dato-etiqueta">Correo</p>
+              <p class="dato-valor">erwinmelendez83@gmail.com</p>
+            </div>
+            <div class="dato reveal" data-delay="300">
+              <p class="dato-etiqueta">Idiomas</p>
+              <p class="dato-valor">Español · Inglés básico</p>
+            </div>
           </div>
         </div>
 
-        <!-- Habilidades con barras de progreso -->
-        <div class="fade-in">
-          <h3 style="color: var(--blanco); margin-bottom: 1.5rem; font-size: 0.9rem;">
-            <span class="highlight">// </span>Mis habilidades actuales
-          </h3>
+        <!-- Valores / propuesta -->
+        <div class="valores-col reveal">
+          <h3>Lo que ofrezco</h3>
 
-          <!--
-            CÓMO AGREGAR / CAMBIAR HABILIDADES:
-            - Cambia el texto del <span> izquierdo
-            - Cambia el número del <span> derecho (porcentaje)
-            - Cambia data-level="XX" por el mismo porcentaje
-            - Puedes copiar y pegar el bloque .skill-item completo
-          -->
-          <div class="skill-list">
-
-            <div class="skill-item">
-              <label><span>HTML5</span><span>75%</span></label>
-              <div class="skill-bar-bg">
-                <div class="skill-bar" data-level="75"></div>
-              </div>
+          <!-- ── Edita o agrega bloques de valor ── -->
+          <div class="valor-item">
+            <div class="valor-icono" aria-hidden="true">📦</div>
+            <div>
+              <h4>Gestión de operaciones</h4>
+              <p>Coordinación de rutas logísticas nacionales, supervisión de personal y control de costos operativos.</p>
             </div>
+          </div>
 
-            <div class="skill-item">
-              <label><span>Logistica</span><span>85%</span></label>
-              <div class="skill-bar-bg">
-                <div class="skill-bar" data-level="65"></div>
-              </div>
+          <div class="valor-item">
+            <div class="valor-icono" aria-hidden="true">📊</div>
+            <div>
+              <h4>Análisis de datos</h4>
+              <p>Uso de Power BI, SQL y Excel para apoyar la toma de decisiones y optimizar procesos.</p>
             </div>
+          </div>
 
-            <div class="skill-item">
-              <label><span>JavaScript</span><span>40%</span></label>
-              <div class="skill-bar-bg">
-                <div class="skill-bar" data-level="40"></div>
-              </div>
+          <div class="valor-item">
+            <div class="valor-icono" aria-hidden="true">🌐</div>
+            <div>
+              <h4>Desarrollo web (aprendiz)</h4>
+              <p>Construcción de páginas y herramientas web con HTML, CSS y JavaScript.</p>
             </div>
+          </div>
 
-            <div class="skill-item">
-              <label><span>Git / GitHub</span><span>50%</span></label>
-              <div class="skill-bar-bg">
-                <div class="skill-bar" data-level="50"></div>
-              </div>
+          <div class="valor-item">
+            <div class="valor-icono" aria-hidden="true">🔢</div>
+            <div>
+              <h4>Enseñanza de matemáticas</h4>
+              <p>Clases particulares presenciales y virtuales en Bogotá para todo nivel.</p>
             </div>
-
-            <div class="skill-item">
-              <label><span>Matemáticas / Estadística</span><span>90%</span></label>
-              <div class="skill-bar-bg">
-                <div class="skill-bar" data-level="90"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <label><span>Excel / Análisis de datos</span><span>70%</span></label>
-              <div class="skill-bar-bg">
-                <div class="skill-bar" data-level="70"></div>
-              </div>
-            </div>
-
           </div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
 
-    <!-- =====================================================
-         SECCIÓN 3 — PORTAFOLIO
-         ===================================================== -->
-    <section id="portafolio">
+  <!-- ============================================================
+       SECCIÓN 3 — EXPERIENCIA PROFESIONAL
+       ============================================================ -->
+  <section id="experiencia" aria-label="Experiencia profesional">
+    <div class="contenedor">
 
-      <h2 class="seccion-titulo">Portafolio</h2>
-      <p class="seccion-subtitulo">// Lo que he construido hasta ahora</p>
+      <p class="etiqueta">Trayectoria</p>
+      <h2 class="titulo-seccion">Experiencia profesional</h2>
+      <div class="linea-acento"></div>
 
       <!--
-        ════════════════════════════════════════════════
-        CÓMO AGREGAR UN PROYECTO NUEVO:
-        1. Copia el bloque <article class="proyecto-card"> completo
-        2. Pégalo dentro del div.proyectos-grid
-        3. Cambia el ícono, nombre, descripción, tags y links
-        ════════════════════════════════════════════════
+        ══════════════════════════════════════
+        CÓMO AGREGAR UNA EXPERIENCIA:
+        Copia un bloque <article class="timeline-item">
+        y edita: empresa, cargo, fecha, lista de logros y badges.
+        Usa class="timeline-item secundario" para roles anteriores.
+        ══════════════════════════════════════
+      -->
+      <div class="timeline" role="list">
+
+        <!-- Experiencia 1 — Actual (punto destacado) -->
+        <article class="timeline-item reveal" role="listitem">
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <p class="timeline-empresa">CCM Ingeniería SAS — Bogotá, Colombia</p>
+                <h3 class="timeline-cargo">Coordinador de Operaciones (Nivel Nacional)</h3>
+              </div>
+              <span class="timeline-fecha">Ene 2024 – Actualidad</span>
+            </div>
+            <ul class="timeline-lista">
+              <li>Coordinación de más de 20 rutas logísticas de GLP y oxígeno a nivel nacional.</li>
+              <li>Planificación y optimización de rutas para mejorar tiempos y reducir costos.</li>
+              <li>Control de costos operativos y generación de reportes de gestión.</li>
+              <li>Supervisión de personal y administración de nómina.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="badge badge-acento">Logística</span>
+              <span class="badge badge-acento">Power BI</span>
+              <span class="badge badge-acento">SQL</span>
+              <span class="badge badge-neutro">Gestión de equipos</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experiencia 2 -->
+        <article class="timeline-item secundario reveal" role="listitem">
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <p class="timeline-empresa">CCM Ingeniería SAS — Bogotá, Colombia</p>
+                <h3 class="timeline-cargo">Auxiliar de Rutas</h3>
+              </div>
+              <span class="timeline-fecha">Oct 2023 – Feb 2024</span>
+            </div>
+            <ul class="timeline-lista">
+              <li>Entregas de oxígeno medicinal e industrial a clientes institucionales.</li>
+              <li>Soporte operativo en planificación de rutas de distribución.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="badge badge-neutro">Distribución</span>
+              <span class="badge badge-neutro">Operaciones</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experiencia 3 -->
+        <article class="timeline-item secundario reveal" role="listitem">
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <p class="timeline-empresa">Inversiones Melenar C.A. — Venezuela</p>
+                <h3 class="timeline-cargo">Gerente de Operaciones y Negocios</h3>
+              </div>
+              <span class="timeline-fecha">Nov 2016 – Dic 2020</span>
+            </div>
+            <ul class="timeline-lista">
+              <li>Dirección de operaciones comerciales y logísticas de la empresa.</li>
+              <li>Diseño de rutas comerciales y negociación con proveedores.</li>
+              <li>Administración general: contabilidad, nómina y relaciones con clientes.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="badge badge-teal">Gerencia</span>
+              <span class="badge badge-teal">Negociación</span>
+              <span class="badge badge-neutro">Administración</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experiencia 4 -->
+        <article class="timeline-item secundario reveal" role="listitem">
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <p class="timeline-empresa">Distribuidora Acor C.A. — Venezuela</p>
+                <h3 class="timeline-cargo">Supervisor de Ventas</h3>
+              </div>
+              <span class="timeline-fecha">Ene 2016 – Nov 2016</span>
+            </div>
+            <ul class="timeline-lista">
+              <li>Supervisión de equipo de ventas y seguimiento de metas comerciales.</li>
+              <li>Organización de rutas comerciales para maximizar cobertura de zona.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="badge badge-neutro">Ventas</span>
+              <span class="badge badge-neutro">Supervisión</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Experiencia 5 -->
+        <article class="timeline-item secundario reveal" role="listitem">
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <p class="timeline-empresa">Ministerio de Educación — Venezuela</p>
+                <h3 class="timeline-cargo">Profesor de Matemáticas</h3>
+              </div>
+              <span class="timeline-fecha">Oct 2007 – Jul 2016</span>
+            </div>
+            <ul class="timeline-lista">
+              <li>Docente de matemáticas en educación media y preparatoria por más de 8 años.</li>
+              <li>Actualmente continúo ofreciendo clases particulares en Bogotá (virtual y presencial).</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="badge badge-neutro">Docencia</span>
+              <span class="badge badge-neutro">Matemáticas</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECCIÓN 4 — HABILIDADES
+       ============================================================ -->
+  <section id="habilidades" aria-label="Habilidades técnicas">
+    <div class="contenedor">
+
+      <p class="etiqueta">Competencias</p>
+      <h2 class="titulo-seccion">Habilidades técnicas</h2>
+      <div class="linea-acento"></div>
+
+      <!--
+        ══════════════════════════════════════
+        CÓMO EDITAR UNA HABILIDAD:
+        Cambia el texto del span y el valor data-nivel (0–100).
+        El color de la barra: class="barra-fill acento|teal|pizarra"
+        ══════════════════════════════════════
+      -->
+      <div class="habilidades-grid">
+
+        <!-- Categoría 1: Análisis de Datos -->
+        <div class="habilidades-categoria reveal">
+          <p class="cat-icono" aria-hidden="true">📊</p>
+          <h3 class="cat-titulo">Análisis de Datos</h3>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>Excel avanzado</span>
+              <span class="skill-nivel">80%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill acento" data-nivel="80"></div>
+            </div>
+          </div>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>Power BI</span>
+              <span class="skill-nivel">70%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill acento" data-nivel="70"></div>
+            </div>
+          </div>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>SQL</span>
+              <span class="skill-nivel">60%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill acento" data-nivel="60"></div>
+            </div>
+          </div>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>Estadística aplicada</span>
+              <span class="skill-nivel">75%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill acento" data-nivel="75"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categoría 2: Operaciones -->
+        <div class="habilidades-categoria reveal" data-delay="100">
+          <p class="cat-icono" aria-hidden="true">📦</p>
+          <h3 class="cat-titulo">Operaciones & Logística</h3>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>Gestión de rutas</span>
+              <span class="skill-nivel">90%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill teal" data-nivel="90"></div>
+            </div>
+          </div>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>Control de costos</span>
+              <span class="skill-nivel">85%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill teal" data-nivel="85"></div>
+            </div>
+          </div>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>Silogtran / Siesa</span>
+              <span class="skill-nivel">70%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill teal" data-nivel="70"></div>
+            </div>
+          </div>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>Liderazgo de equipos</span>
+              <span class="skill-nivel">80%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill teal" data-nivel="80"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categoría 3: Desarrollo Web -->
+        <div class="habilidades-categoria reveal" data-delay="200">
+          <p class="cat-icono" aria-hidden="true">🌐</p>
+          <h3 class="cat-titulo">Desarrollo Web (aprendiz)</h3>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>HTML5</span>
+              <span class="skill-nivel">65%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill pizarra" data-nivel="65"></div>
+            </div>
+          </div>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>CSS3</span>
+              <span class="skill-nivel">55%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill pizarra" data-nivel="55"></div>
+            </div>
+          </div>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>JavaScript</span>
+              <span class="skill-nivel">40%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill pizarra" data-nivel="40"></div>
+            </div>
+          </div>
+
+          <div class="skill-fila">
+            <div class="skill-info">
+              <span>Git & GitHub</span>
+              <span class="skill-nivel">45%</span>
+            </div>
+            <div class="barra-fondo">
+              <div class="barra-fill pizarra" data-nivel="45"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECCIÓN 5 — PROYECTOS WEB
+       ============================================================ -->
+  <section id="proyectos" aria-label="Proyectos">
+    <div class="contenedor">
+
+      <p class="etiqueta">Portafolio</p>
+      <h2 class="titulo-seccion">Proyectos web</h2>
+      <div class="linea-acento"></div>
+
+      <div class="proyectos-intro reveal">
+        <p>
+          Como parte de mi proceso de aprendizaje en desarrollo FrontEnd, aquí comparto
+          los proyectos que he construido. Cada uno representa un paso en mi formación.
+        </p>
+      </div>
+
+      <!--
+        ══════════════════════════════════════
+        CÓMO AGREGAR UN PROYECTO:
+        Copia un bloque <article class="proyecto-card">
+        y edita: emoji, badges, h3, p y los enlaces.
+        ══════════════════════════════════════
       -->
       <div class="proyectos-grid">
 
-        <!-- PROYECTO 1 -->
-        <article class="proyecto-card fade-in">
-          <div class="proyecto-icon">🧮</div>
-          <h3 class="proyecto-nombre">Calculadora Web</h3>
-          <p class="proyecto-desc">
-            Calculadora funcional construida con HTML, CSS y JavaScript puro.
-            Operaciones básicas con interfaz limpia y responsive.
-          </p>
-          <div class="proyecto-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JavaScript</span>
-          </div>
-          <div class="proyecto-links">
-            <!-- ↓ Cambia los href por las URLs reales de tu proyecto -->
-            <a href="#" target="_blank">🔗 Ver demo</a>
-            <a href="https://github.com/Paradero07/" target="_blank">📂 GitHub</a>
+        <!-- Proyecto 1 -->
+        <article class="proyecto-card reveal">
+          <div class="proyecto-imagen" aria-hidden="true">🧮</div>
+          <div class="proyecto-cuerpo">
+            <div class="proyecto-tags">
+              <span class="badge badge-neutro">HTML5</span>
+              <span class="badge badge-neutro">CSS3</span>
+              <span class="badge badge-neutro">JavaScript</span>
+            </div>
+            <h3>Calculadora Web</h3>
+            <p>
+              Calculadora funcional con operaciones básicas.
+              Primer proyecto completo con JavaScript.
+            </p>
+            <div class="proyecto-links">
+              <a href="https://github.com/Paradero07/" target="_blank" rel="noopener" class="proyecto-link">
+                <!-- Ícono GitHub (SVG inline) -->
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+                GitHub
+              </a>
+              <a href="#" class="proyecto-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                Ver demo
+              </a>
+            </div>
           </div>
         </article>
 
-        <!-- PROYECTO 2 -->
-        <article class="proyecto-card fade-in">
-          <div class="proyecto-icon">🌐</div>
-          <h3 class="proyecto-nombre">Portafolio Personal</h3>
-          <p class="proyecto-desc">
-            Este mismo sitio. Diseñado y desarrollado desde cero con estética
-            de terminal para reflejar mi camino como desarrollador.
-          </p>
-          <div class="proyecto-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JS</span>
-            <span class="tag">Diseño</span>
-          </div>
-          <div class="proyecto-links">
-            <a href="#" target="_blank">🔗 Ver live</a>
-            <a href="https://github.com/Paradero07/" target="_blank">📂 GitHub</a>
+        <!-- Proyecto 2 -->
+        <article class="proyecto-card reveal" data-delay="100">
+          <div class="proyecto-imagen" aria-hidden="true">🗂️</div>
+          <div class="proyecto-cuerpo">
+            <div class="proyecto-tags">
+              <span class="badge badge-neutro">HTML5</span>
+              <span class="badge badge-neutro">CSS3</span>
+              <span class="badge badge-neutro">Diseño responsivo</span>
+            </div>
+            <h3>Portafolio Personal</h3>
+            <p>
+              Este mismo portafolio. Construido desde cero
+              con HTML, CSS y JavaScript separados.
+            </p>
+            <div class="proyecto-links">
+              <a href="https://github.com/Paradero07/" target="_blank" rel="noopener" class="proyecto-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
           </div>
         </article>
 
-        <!--
-          ── PLANTILLA PARA AGREGAR TU PRÓXIMO PROYECTO ──
-          Descomenta (quita los signos de comentario) y rellena:
-
-        <article class="proyecto-card fade-in">
-          <div class="proyecto-icon">🚀</div>
-          <h3 class="proyecto-nombre">Nombre del Proyecto</h3>
-          <p class="proyecto-desc">
-            Descripción breve de qué hace el proyecto y qué aprendiste.
-          </p>
-          <div class="proyecto-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-          </div>
-          <div class="proyecto-links">
-            <a href="URL_DEMO" target="_blank">🔗 Ver demo</a>
-            <a href="URL_GITHUB" target="_blank">📂 GitHub</a>
+        <!-- Tarjeta "próximamente" — Bórrala cuando tengas más proyectos -->
+        <article class="proyecto-card card-pronto reveal" data-delay="200">
+          <div class="proyecto-imagen">🚧</div>
+          <div class="proyecto-cuerpo">
+            <h3>Próximo proyecto</h3>
+            <p>En desarrollo. Actualizaré pronto.</p>
           </div>
         </article>
-        -->
 
       </div>
-    </section>
+    </div>
+  </section>
 
 
-    <!-- =====================================================
-         SECCIÓN 4 — HOJA DE VIDA / EXPERIENCIA
-         ===================================================== -->
-    <section id="hoja-de-vida">
+  <!-- ============================================================
+       SECCIÓN 6 — EDUCACIÓN
+       ============================================================ -->
+  <section id="educacion" aria-label="Educación">
+    <div class="contenedor">
 
-      <h2 class="seccion-titulo">Experiencia</h2>
-      <p class="seccion-subtitulo">// Mi camino profesional y educativo</p>
+      <p class="etiqueta">Formación</p>
+      <h2 class="titulo-seccion">Educación</h2>
+      <div class="linea-acento"></div>
 
-      <!--
-        CÓMO AGREGAR UNA ENTRADA AL TIMELINE:
-        Copia un bloque <div class="timeline-item"> completo y rellena los datos
-      -->
-      <div class="timeline">
+      <div class="educacion-grid">
 
-        <!-- ENTRADA 1 — Formación actual -->
-        <div class="timeline-item fade-in">
-          <div class="timeline-fecha">2023 — hoy</div>
-          <div class="timeline-contenido">
-            <p class="timeline-titulo">Desarrollador Web Trainee</p>
-            <!-- ↓ Cambia la institución/empresa -->
-            <p class="timeline-sub">Aprendizaje autónomo</p>
-            <p class="timeline-desc">
-              Construyendo proyectos desde cero con HTML, CSS y JavaScript.
-              Aprendiendo buenas prácticas y control de versiones con Git y GitHub.
-            </p>
-          </div>
+        <!-- ── Agrega o edita tus estudios aquí ── -->
+
+        <div class="edu-card reveal">
+          <p class="edu-icono" aria-hidden="true">🎓</p>
+          <h3 class="edu-titulo">Licenciatura en Educación Matemática</h3>
+          <p class="edu-institucion">Universidad Nacional Abierta</p>
+          <p class="edu-periodo">En curso</p>
+          <p>Formación en pedagogía matemática y ciencias de la educación.</p>
         </div>
 
-        <!-- ENTRADA 2 — Docencia -->
-        <div class="timeline-item fade-in">
-          <div class="timeline-fecha">2021 — hoy</div>
-          <div class="timeline-contenido">
-            <p class="timeline-titulo">Docente de Matemáticas</p>
-            <p class="timeline-sub">Clases virtuales y a domicilio · Bogotá</p>
-            <p class="timeline-desc">
-              Enseñanza personalizada de matemáticas y estadística.
-              Clases particulares y grupales para estudiantes de bachillerato y universidad.
-            </p>
-          </div>
+        <div class="edu-card reveal" data-delay="100">
+          <p class="edu-icono" aria-hidden="true">📐</p>
+          <h3 class="edu-titulo">Licenciatura en Matemáticas Puras</h3>
+          <p class="edu-institucion">UCLA — Venezuela</p>
+          <p class="edu-periodo">Estudios incompletos</p>
+          <p>Base sólida en matemáticas y análisis cuantitativo.</p>
         </div>
 
-        <!-- ENTRADA 3 — Educación -->
-        <div class="timeline-item fade-in">
-          <div class="timeline-fecha">En progreso</div>
-          <div class="timeline-contenido">
-            <p class="timeline-titulo">Formación en Análisis de Datos</p>
-            <!-- ↓ Cambia por el nombre real de tu curso/institución -->
-            <p class="timeline-sub">Plataforma de cursos online</p>
-            <p class="timeline-desc">
-              Conocimientos en estadística aplicada, análisis financiero
-              y manejo de datos con Excel y Python básico.
-            </p>
-          </div>
+        <div class="edu-card reveal" data-delay="200">
+          <p class="edu-icono" aria-hidden="true">💻</p>
+          <h3 class="edu-titulo">Desarrollo Web FrontEnd</h3>
+          <p class="edu-institucion">Autodidacta / Cursos en línea</p>
+          <p class="edu-periodo">2023 – Actualidad</p>
+          <p>HTML5, CSS3, JavaScript y herramientas de diseño web responsivo.</p>
         </div>
-
-        <!--
-          ── PLANTILLA PARA NUEVA ENTRADA ──
-        <div class="timeline-item fade-in">
-          <div class="timeline-fecha">AÑO</div>
-          <div class="timeline-contenido">
-            <p class="timeline-titulo">Título del Rol / Estudio</p>
-            <p class="timeline-sub">Empresa / Institución</p>
-            <p class="timeline-desc">Descripción de lo que hiciste o aprendiste.</p>
-          </div>
-        </div>
-        -->
 
       </div>
-
-      <div style="margin-top: 2rem;">
-        <a href="Hoja de vida ErwinMelendez.pdf" target="_blank" class="btn">
-          ↓ Descargar hoja de vida completa
-        </a>
-      </div>
-
-    </section>
+    </div>
+  </section>
 
 
-    <!-- =====================================================
-         SECCIÓN 5 — CONTACTO
-         ===================================================== -->
-    <section id="contacto">
+  <!-- ============================================================
+       SECCIÓN 7 — CONTACTO
+       ============================================================ -->
+  <section id="contacto" aria-label="Contacto">
+    <div class="contenedor">
 
-      <h2 class="seccion-titulo">contacto</h2>
-      <p class="seccion-subtitulo">// ¡Hablemos! Estoy disponible para proyectos y colaboraciones</p>
+      <p class="etiqueta">¡Hablemos!</p>
+      <h2 class="titulo-seccion">Contacto</h2>
+      <div class="linea-acento"></div>
 
       <div class="contacto-grid">
 
-        <!-- Redes sociales -->
-        <div class="fade-in">
-          <p style="color: var(--texto-dim); font-size: 0.85rem; margin-bottom: 1rem;">
-            Puedes encontrarme en:
+        <!-- Información de contacto -->
+        <div class="contacto-info reveal">
+          <h3>¿Tienes una oportunidad o proyecto?</h3>
+          <p>
+            Estoy abierto a posiciones remotas en operaciones, análisis de datos
+            o proyectos de desarrollo web. Escríbeme por cualquier canal.
           </p>
 
-          <div class="redes">
-            <!-- ↓ Cambia los href por tus links reales -->
-            <a href="https://mail.google.com/mail?hl=es" target="_blank" class="red-link">
-              <div class="red-icon"><mail class="png"></mail> </div>
-              Gmail
-            </a>
-            <a href="https://github.com/Paradero07/" target="_blank" class="red-link">
-              <div class="red-icon"><github class="png"></github></div>
-              GitHub — @Paradero07
-            </a>
-            <a href="https://co.linkedin.com/in/erwin-melendez-0779aa96" target="_blank" class="red-link">
-              <div class="red-icon"><linkedin class="png"></linkedin></div>
-              LinkedIn
-            </a>
-          </div>
+          <!-- ── Actualiza tus datos de contacto reales ── -->
+          <a href="mailto:erwinmelendez83@gmail.com" class="contacto-dato">
+            <span class="contacto-icono" aria-hidden="true">📧</span>
+            erwinmelendez83@gmail.com
+          </a>
 
-          <p style="color: var(--texto-dim); font-size: 0.78rem; margin-top: 2rem; line-height: 1.6;">
-            📍 Bogotá, Colombia<br />
-            🕐 Disponible para freelance y proyectos remotos
-          </p>
+          <a href="https://wa.me/573506735545" target="_blank" rel="noopener" class="contacto-dato">
+            <span class="contacto-icono" aria-hidden="true">📱</span>
+            +57 350 673 5545 (WhatsApp)
+          </a>
+
+          <a href="https://github.com/Paradero07/" target="_blank" rel="noopener" class="contacto-dato">
+            <span class="contacto-icono" aria-hidden="true">🐙</span>
+            github.com/Paradero07
+          </a>
+
+          <a href="https://co.linkedin.com/in/erwin-melendez-0779aa96" target="_blank" rel="noopener" class="contacto-dato">
+            <span class="contacto-icono" aria-hidden="true">💼</span>
+            linkedin.com/in/erwin-melendez
+          </a>
         </div>
 
-        <!-- Formulario de contacto -->
-        <div class="fade-in">
-          <form id="contactForm" onsubmit="enviarFormulario(event)">
-            <div class="form-group">
-
-              <div class="form-row">
-                <input type="text"  id="nombre"  placeholder="Nombre completo" required />
-                <input type="email" id="email"   placeholder="Correo electrónico" required />
-              </div>
-
-              <div class="form-row">
-                <input type="tel"   id="telefono" placeholder="Teléfono (opcional)" />
-                <input type="text"  id="asunto"   placeholder="Asunto" />
-              </div>
-
-              <textarea id="mensaje" rows="5" placeholder="Tu mensaje..." required></textarea>
-
-              <button type="submit" class="btn" style="align-self:flex-start;">
-                → Enviar mensaje
-              </button>
-
-              <div id="formStatus" class="form-status"></div>
+        <!-- Formulario -->
+        <div class="contacto-form reveal" data-delay="150">
+          <div class="form-fila">
+            <div class="form-grupo">
+              <label for="f-nombre">Nombre *</label>
+              <input type="text" id="f-nombre" name="nombre" placeholder="Tu nombre" required autocomplete="name" />
             </div>
-          </form>
+            <div class="form-grupo">
+              <label for="f-correo">Correo *</label>
+              <input type="email" id="f-correo" name="correo" placeholder="tu@correo.com" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="form-grupo">
+            <label for="f-asunto">Asunto</label>
+            <input type="text" id="f-asunto" name="asunto" placeholder="¿De qué se trata?" />
+          </div>
+
+          <div class="form-grupo">
+            <label for="f-mensaje">Mensaje *</label>
+            <textarea id="f-mensaje" name="mensaje" placeholder="Cuéntame sobre la oportunidad o proyecto..." required></textarea>
+          </div>
+
+          <button type="button" id="btn-enviar" class="btn btn-primario form-submit">
+            Enviar mensaje ✉
+          </button>
+
+          <div id="form-aviso" class="form-aviso" role="alert" aria-live="polite">
+            ✅ ¡Gracias! Tu mensaje fue recibido. Te respondo pronto.
+          </div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </section>
+  </main>
 
 
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
-    <footer>
-      <p class="footer-izq">
-        <!-- ↓ Cambia el año si es necesario -->
-        &lt;/<span>ErwinMelendez</span>&gt; · 2025
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="contenedor footer-inner">
+      <a href="#inicio" class="footer-logo" aria-label="Volver al inicio">
+        erwin<span>.melendez</span>
+      </a>
+      <p class="footer-texto">
+        © 2025 Erwin J. Meléndez · Bogotá, Colombia
       </p>
-      <p style="color: var(--texto-dim);">
-        Hecho por EJM · HTML · CSS · JS
-      </p>
-    </footer>
+      <nav class="footer-links" aria-label="Redes sociales">
+        <a href="https://github.com/Paradero07/" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://co.linkedin.com/in/erwin-melendez-0779aa96" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:erwinmelendez83@gmail.com">Email</a>
+      </nav>
+    </div>
+  </footer>
 
 
-    <!-- =====================================================
-         SCRIPTS
-         ===================================================== -->
+  <!-- Script del portafolio (archivo separado) -->
+  <script src="js/script.js"></script>
 
-    <!-- Typed.js para la animación de texto -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-
-    <script>
-      /* =====================================================
-         TEXTO ROTATIVO — Agrega o cambia las frases aquí
-         ===================================================== */
-      new Typed('#texto-rol', {
-        strings: [
-          'Desarrollador FrontEnd',
-          'Trainee Dev',
-          'Amante de las Matemáticas',
-          'Analista Financiero',
-          'Eterno Estudiante'
-        ],
-        typeSpeed: 55,
-        backSpeed: 30,
-        backDelay: 1800,
-        loop: true,
-        showCursor: false   // Ya tenemos el cursor CSS
-      });
-
-
-      /* =====================================================
-         MENÚ HAMBURGUESA
-         ===================================================== */
-      document.getElementById('menuToggle').addEventListener('click', () => {
-        document.getElementById('mainNav').classList.toggle('open');
-      });
-
-
-      /* =====================================================
-         ANIMACIÓN AL HACER SCROLL (IntersectionObserver)
-         ===================================================== */
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) { e.target.classList.add('visible'); }
-          });
-        },
-        { threshold: 0.12 }
-      );
-      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-
-      /* =====================================================
-         BARRAS DE HABILIDADES — Se animan al aparecer en pantalla
-         ===================================================== */
-      const skillObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach(e => {
-            if (e.isIntersecting) {
-              e.target.querySelectorAll('.skill-bar').forEach(bar => {
-                bar.style.width = bar.dataset.level + '%';
-              });
-            }
-          });
-        },
-        { threshold: 0.3 }
-      );
-      document.querySelectorAll('.skill-list').forEach(el => skillObserver.observe(el));
-
-
-      /* =====================================================
-         FORMULARIO DE CONTACTO
-         (Conecta un servicio como Formspree, EmailJS, etc.)
-         Por ahora simula el envío — cambia la lógica aquí
-         ===================================================== */
-      function enviarFormulario(e) {
-        e.preventDefault();
-        const status = document.getElementById('formStatus');
-        const btn    = e.target.querySelector('button[type="submit"]');
-
-        // Simula envío (reemplaza con tu lógica real, p.ej. fetch a Formspree)
-        btn.textContent = '⏳ Enviando...';
-        btn.disabled = true;
-
-        setTimeout(() => {
-          status.textContent = '✅ ¡Mensaje enviado! Te responderé pronto.';
-          status.className = 'form-status ok';
-          document.getElementById('contactForm').reset();
-          btn.textContent = '→ Enviar mensaje';
-          btn.disabled = false;
-        }, 1500);
-      }
-    </script>
-
-  </body>
+</body>
 </html>
